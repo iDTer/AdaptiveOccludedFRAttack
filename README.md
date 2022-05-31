@@ -3,7 +3,7 @@
 
 ## Requirements
 
-- python==3.6
+- Python==3.6
 - dlib==19.22.1
 - numpy==1.19.4
 - opencv_python==4.5.2.54
