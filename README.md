@@ -1,7 +1,7 @@
 # AdaptiveOccludedFRAttack
 
 
-### Requirements
+## Requirements
 
 - python==3.6
 - dlib==19.22.1
@@ -15,23 +15,21 @@
 - torch==1.8.0+cu101
 - torchvision==0.9.0+cu101
 
-### Dataset
+## Dataset
 
-使用Labelme标注的口罩分割数据集——Seg_data：https://www.mirrored.to/files/1BH1JMJ4/Seg_data.zip_links
+AOA1 Mask: https://www.mirrored.to/files/HOLZLO0S/mask.zip_links
 
-下载口罩分割数据集解压并划分train和val，放置于目录`AOA2/Mask_Seg/data`
+Model: https://url65.ctfile.com/f/37075665-587377309-3e8bca (key: 6136)
 
-裁剪后的CelebA人脸数据集：https://www.mirrored.to/files/0UWEVPAS/img_align_celeba_croped.zip_links
+Labelme[1] labeled masks which used in mask segmentation——Seg_data: https://www.mirrored.to/files/1BH1JMJ4/Seg_data.zip_links. Download and unpack the zip, and divide train and val into `AOA2/Mask_Seg/data`
 
-基于CelebA生成的口罩遮挡人脸数据集：https://www.mirrored.to/files/4EJ0XQW3/img_align_celeba_croped_masked.zip_links
+Cropped CelebA[2] face dataset: https://www.mirrored.to/files/0UWEVPAS/img_align_celeba_croped.zip_links
 
-AOA1 Mask：https://www.mirrored.to/files/HOLZLO0S/mask.zip_links
-
-model：https://url65.ctfile.com/f/37075665-587377309-3e8bca (key: 6136)
+Mask face dataset based on CelebA: https://www.mirrored.to/files/4EJ0XQW3/img_align_celeba_croped_masked.zip_links
 
 ## Training
 
-#### 1. AOA1
+### 1. AOA1
 
 * STEP 1. 运行下面的命令，计算人脸图像之间的相似度，结果输出为likehood.json
 
@@ -42,16 +40,16 @@ python AOA1/calc_likehood.py
 - STEP 2. 生成遮挡人脸图像的干扰限制区域，输出目录为mask：
 
 ```
-python pretreatment/prepro.py --vocab_size 8000
+python AOA1/generate_mask.py
 ```
 
 * STEP 3. 生成基于局部特征特征增强口罩遮挡人脸识别的对抗样本
 
 ```
-python target_attack
+python AOA1/target_attack
 ```
 
-* STEP 4. 攻击效果验证，验证以百度FR为例，需要自行注册百度SDK，完善以下信息
+* STEP 4. 攻击效果验证，以百度FR为例，需要自行注册百度SDK，完善以下信息
 
 ```
 APP_ID = ''
@@ -62,38 +60,33 @@ SECRET_KEY = ''
 运行下面的命令，构建在线的人脸数据库，
 
 ```
-python face_register.py
+python AOA1/baiduface/face_register.py
 ```
 
-#### 2. AOA2
+判断攻击是否成功
+
+```
+python AOA1/baiduface/face_rec.py
+```
+
+### 2. AOA2
 
 - STEP 1. 运行下面的命令，训练口罩遮挡人脸分割模型，
 
 ```
-python Mask_Seg\train.py
+python AOA2/Mask_Seg/train.py
 ```
 
-- STEP 2. 运行下面的命令，训练口罩遮挡人脸分割模型，
-
-
-
-
-
-
-
-
-
-## Result
-
-当输入：
+- STEP 2. 生成基于人脸修复口罩遮挡人脸识别的对抗样本
 
 ```
-
+python AOA2/src/AOA2.py
 ```
+## Reference
 
-输出句子：
+[1] https://github.com/wkentaro/labelme
 
-
+[2] Liu Z, Luo P, Wang X, et al. Deep learning face attributes in the wild[C]//Proceedings of the IEEE international conference on computer vision. 2015: 3730-3738.
 
 
 
