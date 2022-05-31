@@ -3,18 +3,18 @@
 
 ### Requirements
 
-python==3.6
-dlib==19.22.1
-numpy==1.19.4
-opencv_python==4.5.2.54
-Pillow==9.1.1
-requests==2.25.1
-scikit_image==0.17.2
-scipy==1.5.4
-skimage==0.0
-tensorboardX==2.5
-torch==1.8.0+cu101
-torchvision==0.9.0+cu101
+- python==3.6
+- dlib==19.22.1
+- numpy==1.19.4
+- opencv_python==4.5.2.54
+- Pillow==9.1.1
+- requests==2.25.1
+- scikit_image==0.17.2
+- scipy==1.5.4
+- skimage==0.0
+- tensorboardX==2.5
+- torch==1.8.0+cu101
+- torchvision==0.9.0+cu101
 
 ### Dataset
 
