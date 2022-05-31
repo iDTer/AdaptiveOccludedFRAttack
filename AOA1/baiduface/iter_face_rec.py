@@ -32,26 +32,6 @@ def read_likelihood_json():
         return likelihood_list
 
 
-# def print_result_table(client_result, my_iter_num):
-#     top_50_face_str = client_result['result']['user_list']
-#     print('iteration_num', my_iter_num)
-#     print("{}\t\t{}\t\t{}\t\t".format(
-#         "top",
-#         "user_id",
-#         "score"
-#     ))
-#     file_handle.write('top\t\tuser_id\t\tscore\t\t\n')
-#     for i in range(5):
-#         print("{}\t\t{}\t\t{}\t\t".format(
-#             i + 1,
-#             top_50_face_str[i]['user_id'],
-#             top_50_face_str[i]['score']
-#         ))
-#         file_handle.write(str(i + 1) + '\t\t' +
-#                           top_50_face_str[i]['user_id'] + '\t\t'
-#                           + str(top_50_face_str[i]['score']) + '\t\t\n')
-
-
 def if_attack_success(client_result, my_target):
     top_face_str = client_result['result']['user_list']
     rec_usrId = top_face_str[0]['user_id']

@@ -62,8 +62,12 @@ SECRET_KEY = ''
 运行下面的命令，构建在线的人脸数据库，
 
 ```
-python face_register
+python face_register.py
 ```
+
+#### 2. AOA2
+
+
 
 
 
