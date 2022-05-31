@@ -27,7 +27,7 @@
 
 AOA1 Mask：https://www.mirrored.to/files/HOLZLO0S/mask.zip_links
 
-model：...
+model：https://url65.ctfile.com/f/37075665-587377309-3e8bca (key: 6136)
 
 ## Training
 
@@ -66,6 +66,18 @@ python face_register.py
 ```
 
 #### 2. AOA2
+
+- STEP 1. 运行下面的命令，训练口罩遮挡人脸分割模型，
+
+```
+python Mask_Seg\train.py
+```
+
+- STEP 2. 运行下面的命令，训练口罩遮挡人脸分割模型，
+
+
+
+
 
 
 
