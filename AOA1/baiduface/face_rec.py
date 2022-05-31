@@ -58,11 +58,15 @@ def print_result_table(client_result):
 def count_success_num(client_result, my_target):
     count = 0
     top_5_face_str = client_result['result']['user_list']
-    for i in range(5):
-        rec_usrId = top_5_face_str[i]['user_id']
-        if rec_usrId == my_target:
-            count = 1
-            continue
+    rec_usrId = top_5_face_str[0]['user_id']
+    if rec_usrId == my_target:
+        count = 1
+    # if rec_usrId == my_target:
+    # for i in range(5):
+    #     rec_usrId = top_5_face_str[i]['user_id']
+    #     if rec_usrId == my_target:
+    #         count = 1
+    #         continue
     return count
 
 

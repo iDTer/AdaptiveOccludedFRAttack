@@ -11,7 +11,6 @@
 - requests==2.25.1
 - scikit_image==0.17.2
 - scipy==1.5.4
-- skimage==0.0
 - tensorboardX==2.5
 - torch==1.8.0+cu101
 - torchvision==0.9.0+cu101
@@ -20,47 +19,53 @@
 
 使用Labelme标注的口罩分割数据集——Seg_data：https://www.mirrored.to/files/1BH1JMJ4/Seg_data.zip_links
 
-下载口罩分割数据集解压并划分train和val，放置于目录`AOA2\Mask_Seg\data`
+下载口罩分割数据集解压并划分train和val，放置于目录`AOA2/Mask_Seg/data`
 
 裁剪后的CelebA人脸数据集：https://www.mirrored.to/files/0UWEVPAS/img_align_celeba_croped.zip_links
 
 基于CelebA生成的口罩遮挡人脸数据集：https://www.mirrored.to/files/4EJ0XQW3/img_align_celeba_croped_masked.zip_links
 
+AOA1 Mask：https://www.mirrored.to/files/HOLZLO0S/mask.zip_links
 
+model：...
 
 ## Training
 
-* STEP 1. 运行下面的命令，生成
+#### 1. AOA1
+
+* STEP 1. 运行下面的命令，计算人脸图像之间的相似度，结果输出为likehood.json
 
 ```
-python pretreatment/prepro.py
+python AOA1/calc_likehood.py
 ```
 
-如果你想调整默认的词典大小(default:32000)，可以进行下面的命令：
+- STEP 2. 生成遮挡人脸图像的干扰限制区域，输出目录为mask：
 
 ```
 python pretreatment/prepro.py --vocab_size 8000
 ```
 
-它会创建两个文件 `barrages_data/prepro` and `barrages_data/segmented`.
-
-* STEP 2. 训练模型
+* STEP 3. 生成基于局部特征特征增强口罩遮挡人脸识别的对抗样本
 
 ```
-python train.py
+python target_attack
 ```
 
-参数设置放在 `hparams.py` ，可以根据里面的参数进行对应设置，比如：
+* STEP 4. 攻击效果验证，验证以百度FR为例，需要自行注册百度SDK，完善以下信息
 
 ```
-python train.py --logdir myLog --batch_size 256 --dropout_rate 0.5
+APP_ID = ''
+API_KEY = ''
+SECRET_KEY = ''
 ```
 
-* STEP 3. 根据输入的句子，生成弹幕
+运行下面的命令，构建在线的人脸数据库，
 
 ```
-python barrrages_generate.py
+python face_register
 ```
+
+
 
 ## Result
 

@@ -54,12 +54,11 @@ def read_likelihood_json():
 
 def if_attack_success(client_result, my_target):
     top_face_str = client_result['result']['user_list']
-    for i in range(50):
-        rec_usrId = top_face_str[i]['user_id']
-        if rec_usrId == my_target:
-            return True
-        else:
-            return False
+    rec_usrId = top_face_str[0]['user_id']
+    if rec_usrId == my_target:
+        return True
+    else:
+        return False
 
 
 def handle_result(client_result, my_iter_num, my_target):
@@ -80,7 +79,7 @@ def handle_result(client_result, my_iter_num, my_target):
                 top_face_str[i]['user_id'],
                 top_face_str[i]['score']
             ))
-            for j in range(50):
+            for j in range(10):
                 file_handle.write(str(j+1) + "\t\t" + top_face_str[j]['user_id']
                                   + "\t\t" + str(top_face_str[j]['score']) + "\t\t\n")
 
