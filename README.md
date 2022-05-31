@@ -31,25 +31,25 @@ Mask face dataset based on CelebA: https://www.mirrored.to/files/4EJ0XQW3/img_al
 
 ### 1. AOA1
 
-* STEP 1. 运行下面的命令，计算人脸图像之间的相似度，结果输出为likehood.json
+* STEP 1.  Run the following command to calculate the similarity between face images, and the result output is likehood.json.
 
 ```
 python AOA1/calc_likehood.py
 ```
 
-- STEP 2. 生成遮挡人脸图像的干扰限制区域，输出目录为mask：
+- STEP 2. Generate the perturbation restricted area of  face image, and the output directory is:
 
 ```
 python AOA1/generate_mask.py
 ```
 
-* STEP 3. 生成基于局部特征特征增强口罩遮挡人脸识别的对抗样本
+* STEP 3. Generate adversarial examples to attack mask occlusion face recognition based on local feature  enhanced.
 
 ```
 python AOA1/target_attack
 ```
 
-* STEP 4. 攻击效果验证，以百度FR为例，需要自行注册百度SDK，完善以下信息
+* STEP 4. Verification of attack effect. Taking the Baidu FR as an example. You need to register Baidu SDK and complete the following information:
 
 ```
 APP_ID = ''
@@ -57,13 +57,13 @@ API_KEY = ''
 SECRET_KEY = ''
 ```
 
-运行下面的命令，构建在线的人脸数据库，
+Run the following command to build an online face database:
 
 ```
 python AOA1/baiduface/face_register.py
 ```
 
-判断攻击是否成功
+Determine whether the attack was successful:
 
 ```
 python AOA1/baiduface/face_rec.py
@@ -71,13 +71,13 @@ python AOA1/baiduface/face_rec.py
 
 ### 2. AOA2
 
-- STEP 1. 运行下面的命令，训练口罩遮挡人脸分割模型，
+- STEP 1. Run the following command to train a mask occlusion face segmentation model:
 
 ```
 python AOA2/Mask_Seg/train.py
 ```
 
-- STEP 2. 生成基于人脸修复口罩遮挡人脸识别的对抗样本
+- STEP 2. Generating adversarial examples to Arc-UFI
 
 ```
 python AOA2/src/AOA2.py
